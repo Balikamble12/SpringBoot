@@ -1,0 +1,29 @@
+server:
+  port: 8181   # user-service runs on 8081, Eureka server is on 8383
+
+spring:
+  application:
+    name: user-service   # service name shown in Eureka dashboard
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/microservices
+    username: root
+    password: Godbless@12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # auto create/update tables
+    show-sql: true       # show SQL queries in logs
+    properties:
+      hibernate:
+        format_sql: true
+
+eureka:
+  instance:
+    prefer-ip-address: true   # register using IP instead of hostname
+  client:
+    fetch-registry: true      # fetch registry info from Eureka
+    register-with-eureka: true # register this service with Eureka
+    service-url:
+      defaultZone: http://localhost:8080/eureka/   # Eureka server URL
