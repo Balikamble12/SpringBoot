@@ -28,6 +28,12 @@ public class RatingImpl implements RatingService {
         return ratingRepository.findAll();
     }
 
+    
+    @Override
+    public Rating getRatingById(String ratingId) {
+       return ratingRepository.findById(ratingId).orElseThrow(() -> new RuntimeException("Rating not found with id: " + ratingId));
+    }
+
     @Override
     public List<Rating> getRatingsByUserId(String userId) {
         return ratingRepository.findByUserId(userId);
@@ -39,10 +45,6 @@ public class RatingImpl implements RatingService {
         return ratingRepository.findByHotelId(hotelId);
     }
 
-    @Override
-    public Rating getRatingById(String ratingId) {
-       return ratingRepository.findById(ratingId).orElseThrow(() -> new RuntimeException("Rating not found with id: " + ratingId));
-    }
 
     @Override
     public List<Rating> findByHotelId(String hotelId) {

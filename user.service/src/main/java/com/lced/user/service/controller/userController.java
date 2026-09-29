@@ -5,57 +5,36 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.lced.user.service.entity.User;
 import com.lced.user.service.services.Userservice;
 
-
 @RestController
 @RequestMapping("/users")
-public class userController {
-
+class UserController {
 
     @Autowired
     private Userservice userService;
-//create
 
-@PostMapping("/createuser")
-public ResponseEntity<User> createUser(@RequestBody User user) {
-    
-    User user1= userService.saveUser(user);
-return ResponseEntity.status(HttpStatus.CREATED).body(user1);
-}
+    // Create user
+    @PostMapping("/createuser")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User user1 = userService.saveUser(user);
+        return ResponseEntity.status(HttpStatus.CREATED).body(user1);
+    }
 
-////single user get
+    // Get single user by ID
+    @GetMapping("/{userId}")
+    public ResponseEntity<User> getSingleUser(@PathVariable String userId) {
+        User user = userService.getUser(userId);
+        return ResponseEntity.ok(user);
+    }
 
-
-@GetMapping("/{userId}")
-public ResponseEntity<User> getsingleUser(@PathVariable String userId) {
-    
-    User user= userService.getUser(userId);
-
-    return ResponseEntity.ok(user);
-}
-/// 
-/// 
-
-
-
-//all user
-
-public ResponseEntity<List<User>> getallUser() {
-    
-    List<User> allUser= userService.getAllUser();
-
-    return ResponseEntity.ok(allUser);
-
-
-}
-
+    // Get all users
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUser() {
+        List<User> allUser = userService.getAllUser();
+        return ResponseEntity.ok(allUser);
+    }
 }
