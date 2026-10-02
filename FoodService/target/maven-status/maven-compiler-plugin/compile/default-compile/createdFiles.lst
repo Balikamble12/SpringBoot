@@ -1,0 +1,6 @@
+com\Food\Service\Food\Service\ServiceLayer\FooditemService.class
+com\Food\Service\Food\Service\impl\FoodServiceImpl.class
+com\Food\Service\Food\Service\FoodServiceApplication.class
+com\Food\Service\Food\Service\controller\FoodItemController.class
+com\Food\Service\Food\Service\Repository\FoodItemRepository.class
+com\Food\Service\Food\Service\entity\FoodItem.class
